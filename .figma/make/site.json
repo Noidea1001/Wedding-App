@@ -1,0 +1,10 @@
+{
+  "description": "Creates elegant, mobile-friendly wedding websites with Khmer premium and classic design styles, enhancing user experience and cultural appeal.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
