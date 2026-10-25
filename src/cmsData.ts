@@ -1,112 +1,9 @@
-export interface ScheduleItem {
-  id: string
-  time: string
-  period: string
-  icon: string
-  title: string
-  subtitle: string
-  detail: string
-}
+export * from "./types/wedding"
+export * from "./types/guest"
+export * from "./types/template"
 
-export interface GalleryPhoto {
-  id: number
-  title: string
-  subtitle: string
-  poetry: string
-  tag: string
-  imageUrl: string
-  gradient: string
-}
-
-export interface GuestItem {
-  id: string
-  name: string
-  title: string
-  side: "ខាងកូនប្រុស" | "ខាងកូនស្រី" | "ភ្ញៀវ VIP"
-  table: string
-}
-
-export interface RsvpRecord {
-  id: string
-  name: string
-  phone: string
-  guests: number
-  attending: "yes" | "no"
-  createdAt: string
-}
-
-export interface WishRecord {
-  id: string
-  name: string
-  relation: string
-  message: string
-  time: string
-}
-
-export interface WeddingCmsData {
-  // Couple & Portraits
-  groomKhmer: string
-  groomLatin: string
-  groomAvatarUrl: string
-  brideKhmer: string
-  brideLatin: string
-  brideAvatarUrl: string
-  shortGroom: string
-  shortBride: string
-  monogramLeft: string
-  monogramRight: string
-  heroBannerImageUrl: string
-  venuePhotoUrl: string
-
-  // Parents
-  groomFather: string
-  groomMother: string
-  brideFather: string
-  brideMother: string
-
-  // Date & Venue
-  solarDateDisplay: string
-  dayOfWeekKhmer: string
-  dayNumberKhmer: string
-  monthYearKhmer: string
-  lunarDateFull: string
-  ceremonyTimeDisplay: string
-  countdownIsoDate: string
-  venueNameKhmer: string
-  venueHallKhmer: string
-  venueAddressKhmer: string
-  venueEnglishLabel: string
-  googleMapsUrl: string
-
-  // Banking / KHQR
-  bankName: string
-  accountHolder: string
-  usdAccountNumber: string
-  usdQrImageUrl: string
-  khrAccountNumber: string
-  khrQrImageUrl: string
-
-  // Theme & Visuals + Client View Controller
-  templateStyle: "classic-kbach" | "popup-palace" | "olive-foil-2026" | "jasmine-arch"
-  themePreset: "royal-crimson" | "imperial-emerald" | "golden-palace"
-  showFloatingPetals: boolean
-  showCoverSplash: boolean
-  clientShowcaseMode: boolean
-  allowInlinePhotoUpload: boolean
-  showHostLinkGenerator: boolean
-
-  // Schedule
-  dayOneLabel: string
-  dayTwoLabel: string
-  dayOneEvents: ScheduleItem[]
-  dayTwoEvents: ScheduleItem[]
-
-  // Gallery
-  gallery: GalleryPhoto[]
-
-  // Guest List for Personalized Links
-  guestList: GuestItem[]
-}
+import type { WeddingCmsData } from "./types/wedding"
+import type { RsvpRecord, WishRecord } from "./types/guest"
 
 export const defaultWeddingCmsData: WeddingCmsData = {
   groomKhmer: "សិរី សុវណ្ណ",
@@ -148,8 +45,9 @@ export const defaultWeddingCmsData: WeddingCmsData = {
   khrAccountNumber: "002 777 888",
   khrQrImageUrl: "",
 
-  templateStyle: "classic-kbach",
+  templateStyle: "khmer-traditional",
   themePreset: "royal-crimson",
+  goldDamaskTexture: "gold-damask",
   showFloatingPetals: true,
   showCoverSplash: true,
   clientShowcaseMode: false,
@@ -158,6 +56,7 @@ export const defaultWeddingCmsData: WeddingCmsData = {
 
   dayOneLabel: "ថ្ងៃទី១ • ថ្ងៃសុក្រ ទី២៦ ធ្នូ",
   dayTwoLabel: "ថ្ងៃទី២ • ថ្ងៃសៅរ៍ ទី២៧ ធ្នូ",
+
   dayOneEvents: [
     {
       id: "d1-1",
@@ -238,30 +137,69 @@ export const defaultWeddingCmsData: WeddingCmsData = {
   gallery: [
     {
       id: 1,
-      title: "ឈុតប្រពៃណីខ្មែរ បុរាណ",
-      subtitle: "សម្លៀកបំពាក់ហូលផាមួង និងក្បិនមាស",
-      poetry: "ស្នេហាប្រៀបដូចផ្កាឈូកមាស រីកក្រោមពន្លឺព្រះអាទិត្យនៃប្រាសាទបុរាណ",
-      tag: "Chapter I • Royal Attire",
-      imageUrl: "",
-      gradient: "radial-gradient(circle at 50% 35%, #8f1d28 0%, #42060c 60%, #1c0104 100%)",
+      title: "បរិយាកាសនៃសេចក្តីស្រឡាញ់",
+      subtitle: "អបអរសាទរជាមួយញាតិមិត្ត និងផ្កាពរជ័យ",
+      poetry: "ក្រោមការអបអរសាទរ និងផ្កាពរជ័យ ថ្ងៃចាប់ផ្តើមជីវិតគូថ្មីដ៏មានន័យ",
+      tag: "Chapter I • Celebration & Joy",
+      category: "celebration",
+      imageUrl: "/gallery/prewedding-1.jpg",
+      gradient:
+        "radial-gradient(circle at 50% 35%, #8f1d28 0%, #42060c 60%, #1c0104 100%)",
     },
     {
       id: 2,
       title: "ស្នាមញញឹមនៃសុភមង្គល",
-      subtitle: "ក្រោមម្លប់ប្រាសាទបុរាណខ្មែរ",
-      poetry: "វាសនាចងភ្ជាប់និស្ស័យពីអតីតជាតិ ឱ្យយើងជួបគ្នាក្នុងថ្ងៃមង្គលជ័យ",
-      tag: "Chapter II • Sacred Vows",
-      imageUrl: "",
-      gradient: "radial-gradient(circle at 50% 35%, #a16f22 0%, #4d2807 62%, #1d0902 100%)",
+      subtitle: "ផ្កាកូនក្រមុំ និងពន្លឺព្រះអាទិត្យមាស",
+      poetry: "ពន្លឺមាសនៃព្រះសូរិយាបំភ្លឺដួងចិត្ត ស្នេហ៍ពិតស្ថិតស្ថេរអស់មួយជីវិត",
+      tag: "Chapter II • Golden Romance",
+      category: "traditional",
+      imageUrl: "/gallery/prewedding-2.jpg",
+      gradient:
+        "radial-gradient(circle at 50% 35%, #a16f22 0%, #4d2807 62%, #1d0902 100%)",
     },
     {
       id: 3,
-      title: "សន្យាស្នេហ៍អមតៈ",
-      subtitle: "ពិធីសំពះផ្ទឹម និងចងដៃ",
-      poetry: "អំបោះក្រហមចងភ្ជាប់ដួងចិត្តទាំងពីរ រួមរស់ជាគូស្វាមីភរិយាអស់កល្បជានិច្ច",
-      tag: "Chapter III • Eternal Union",
-      imageUrl: "",
-      gradient: "radial-gradient(circle at 50% 35%, #781722 0%, #360409 65%, #160103 100%)",
+      title: "ចិញ្ចៀនអាពាហ៍ពិពាហ៍ពេជ្រ",
+      subtitle: "និមិត្តសញ្ញានៃសេចក្តីស្មោះត្រង់",
+      poetry: "ចិញ្ចៀនមាសតំណាងចំណងស្នេហ៍ រួមរស់កៀកកើយមិនប្រែប្រួល",
+      tag: "Chapter III • Sacred Rings",
+      category: "traditional",
+      imageUrl: "/gallery/prewedding-3.jpg",
+      gradient:
+        "radial-gradient(circle at 50% 35%, #781722 0%, #360409 65%, #160103 100%)",
+    },
+    {
+      id: 4,
+      title: "ពិធីមង្គលការដ៏ឧដុង្គឧត្តម",
+      subtitle: "បង្ហោះប៉េងប៉ោងសេចក្តីសុខ និងពរជ័យ",
+      poetry: "បង្ហោះប៉េងប៉ោងសេចក្តីសុខ ឱ្យសុភមង្គលហោះហើរពាសពេញវេហា",
+      tag: "Chapter IV • Grand Gala",
+      category: "celebration",
+      imageUrl: "/gallery/prewedding-4.jpg",
+      gradient:
+        "radial-gradient(circle at 50% 35%, #2a3c50 0%, #111d29 65%, #050b10 100%)",
+    },
+    {
+      id: 5,
+      title: "កៀកកើយកាន់ដៃរួមដំណើរ",
+      subtitle: "ពីដង្ហើម និងចុងដៃ",
+      poetry: "កាន់ដៃគ្នារហូតដល់ចាស់កោងខ្នង រួមសុខរួមទុក្ខគ្មានថ្ងៃបែកឆ្ងាយ",
+      tag: "Chapter V • Hand in Hand",
+      category: "modern",
+      imageUrl: "/gallery/prewedding-5.jpg",
+      gradient:
+        "radial-gradient(circle at 50% 35%, #1b3d2b 0%, #0d1e15 65%, #040a07 100%)",
+    },
+    {
+      id: 6,
+      title: "សន្យាស្នេហ៍លើកំពូលភ្នំ",
+      subtitle: "រួមដំណើរលើវិថីជីវិតថ្មី",
+      poetry: "ទោះផ្លូវវែងឆ្ងាយប៉ុណ្ណា យើងនឹងដើរទន្ទឹមគ្នាអស់មួយជីវិត",
+      tag: "Chapter VI • Boundless Love",
+      category: "modern",
+      imageUrl: "/gallery/prewedding-6.jpg",
+      gradient:
+        "radial-gradient(circle at 50% 35%, #59351e 0%, #2f1b0f 65%, #120905 100%)",
     },
   ],
 
